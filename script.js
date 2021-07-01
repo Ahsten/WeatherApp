@@ -27,14 +27,32 @@ function displayData(data){
     const todayLowTemp = document.querySelector('.low-temp');
     const feelsLikeTemp = document.querySelector('.feels-like');
 
-    currentTemp.innerHTML += data[0] + ' \u00B0F';
-    feelsLikeTemp.innerHTML += 'Feels Like ' + data[2] + '\u00B0F'
-    todayHighTemp.innerHTML += 'High: ' + data[3] + ' \u00B0F';
-    todayLowTemp.innerHTML += 'Low: '+ data[4] + ' \u00B0F';
-    currentWind.innerHTML += 'Wind: ' + data[1] + ' mph';
+    currentTemp.innerHTML = data[0] + ' \u00B0F';
+    feelsLikeTemp.innerHTML = 'Feels Like ' + data[2] + '\u00B0F'
+    todayHighTemp.innerHTML = 'High: ' + data[3] + ' \u00B0F';
+    todayLowTemp.innerHTML = 'Low: '+ data[4] + ' \u00B0F';
+    currentWind.innerHTML = 'Wind: ' + data[1] + ' mph';
 }
 
+function getLocation(){
+    const location = document.querySelector('.loc').value;
+    const locationDisplay = document.querySelector('.location');
 
+    locationDisplay.innerHTML = location;
+    getWeatherData(location);
+}
 
-getWeatherData('Denver');
+function setLocation(){
+    const search = document.querySelector('.search');
+    const locationDisplay = document.querySelector('.location');
+    const location = document.querySelector('.loc').value;
+    
+
+    search.addEventListener('click', function(){
+       getLocation();
+    });
+
+}
+
+setLocation();
 
