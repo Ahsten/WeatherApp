@@ -1,0 +1,45 @@
+html{
+    font-size: 16px;
+}
+body {
+    min-height: 100vh;
+    background-image: url('nature.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    margin: 50px
+}
+
+.temp{
+    font-size: 5rem;
+}
+
+::placeholder{
+    color: white;
+}
+.search {
+    background: none;
+    color: white;
+    border: none;
+}
+.loc{
+    background: none;
+    color: white;
+    outline: none;
+    border-width: 0 0 2px;
+    border-color: white;
+}
+
+.location{
+    margin-bottom: 0;
+    font-size: 3rem;
+}
+
+.conditions{
+    font-size: 2rem;
+}
+
+.weather-data{
+    font-size: 1rem;
+}

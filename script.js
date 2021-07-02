@@ -14,8 +14,9 @@ function getCurrentWeather(wData){
     const feelsLike = wData.main.feels_like;
     const lowTemp = wData.main.temp_min;
     const highTemp = wData.main.temp_max;
+    const condition = wData.weather[0].main;
 
-    return [temp, wind, feelsLike, highTemp, lowTemp];
+    return [temp, wind, feelsLike, highTemp, lowTemp, condition];
     
 }
 
@@ -26,33 +27,42 @@ function displayData(data){
     const todayHighTemp = document.querySelector('.high-temp');
     const todayLowTemp = document.querySelector('.low-temp');
     const feelsLikeTemp = document.querySelector('.feels-like');
+    const conditions = document.querySelector('.conditions');
 
-    currentTemp.innerHTML = data[0] + ' \u00B0F';
-    feelsLikeTemp.innerHTML = 'Feels Like ' + data[2] + '\u00B0F'
-    todayHighTemp.innerHTML = 'High: ' + data[3] + ' \u00B0F';
-    todayLowTemp.innerHTML = 'Low: '+ data[4] + ' \u00B0F';
-    currentWind.innerHTML = 'Wind: ' + data[1] + ' mph';
+    conditions.innerHTML = data[5];
+    currentTemp.innerHTML = Math.round(data[0]) + ' \u00B0F';
+    feelsLikeTemp.innerHTML = 'Feels Like ' + Math.round(data[2]) + '\u00B0F'
+    todayHighTemp.innerHTML = 'High: ' + Math.round(data[3]) + ' \u00B0F';
+    todayLowTemp.innerHTML = 'Low: '+ Math.round(data[4]) + ' \u00B0F';
+    currentWind.innerHTML = 'Wind: ' + Math.round(data[1]) + ' mph';
 }
 
-function getLocation(){
+//Set the location
+function setLocation(){
     const location = document.querySelector('.loc').value;
     const locationDisplay = document.querySelector('.location');
 
     locationDisplay.innerHTML = location;
     getWeatherData(location);
+
 }
 
-function setLocation(){
+//Load default location for when the page first loads
+function loadDefault(){
+    getWeatherData('Denver');
+}
+
+//Add event listener for search function
+function addEventListener(){
     const search = document.querySelector('.search');
-    const locationDisplay = document.querySelector('.location');
-    const location = document.querySelector('.loc').value;
-    
+    const clear = document.querySelector('.loc').value;
 
     search.addEventListener('click', function(){
-       getLocation();
-    });
-
+        setLocation();
+        document.querySelector('.loc').value = '';
+     });
 }
 
-setLocation();
+loadDefault();
+addEventListener();
 
